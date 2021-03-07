@@ -28,19 +28,21 @@ public class Lib1
 		String result="";
 		StringBuffer saveStr=new StringBuffer();
 		String temp="";
-		FileInputStream in=null;
-		InputStreamReader isr=null;
-		BufferedReader bis=null;
-		try {
-				in=new FileInputStream(_filepath);
-				isr=new InputStreamReader(in);
-				bis=new BufferedReader(isr);
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(_filepath));
+		//InputStreamReader将字符流向字节流转换。
+		//InputStreamReader isr = new InputStreamReader(new FileInputStream(绝对文件名));
+		//用来读取文件中的数据
+		BufferedReader bis = new BufferedReader(isr);//使用缓冲区，可以使用缓冲区的read(),readLine()方法；
+		/*readLine每次读取一行，read()读取整个文件，是生成文件内容最直接的方式，如果连续面向行的处理则是没有必要的
+		可直接综合为
+		BufferedReader bis = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
+		*/
 				while((temp=bis.readLine())!=null)
 				{
 					saveStr.append(temp);
 					saveStr.append(" ");
 				}
-			in.close();
+// 			in.close();
 			isr.close();
 			temp = saveStr.toString();
 			temp=temp.replaceAll("[^A-Za-z0-9]", " ");//替换所有非字母数字的符号为空格
@@ -78,17 +80,13 @@ public class Lib1
 	{
 		int Lcount=0;
 		String result="";
-		FileInputStream in=null;
-		InputStreamReader isr=null;
-		BufferedReader bis=null;
-		in=new FileInputStream(_filepath);
-		isr=new InputStreamReader(in);
-		bis=new BufferedReader(isr);
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(_filepath));
+		BufferedReader bis = new BufferedReader(isr);//使用缓冲区，可以使用缓冲区的read(),readLine()方法；
 		while(bis.readLine()!=null)//一次读取一行
 		{
 			Lcount++;
 		}
-		in.close();
+// 		in.close();
 		isr.close();
 		result += "lines: "+Lcount+"\n";
 		Lcount=0;
@@ -101,12 +99,8 @@ public class Lib1
 		String result="";
 		StringBuffer saveStr=new StringBuffer();
 		String temp="";
-		FileInputStream in=null;
-		InputStreamReader isr=null;
-		BufferedReader bis=null;
-		in=new FileInputStream(_filepath);
-		isr=new InputStreamReader(in);
-		bis=new BufferedReader(isr);
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(_filepath));
+		BufferedReader bis = new BufferedReader(isr);//使用缓冲区，可以使用缓冲区的read(),readLine()方法；
 		while((temp=bis.readLine())!=null)
 		{
 			saveStr.append(temp);
@@ -133,7 +127,7 @@ public class Lib1
 	            for (String key : map.keySet()) {
 	                 set.add(new WordEntity(key,map.get(key)));
 	             }
-			in.close();
+// 			in.close();
 			isr.close();
 	            int count=1;
 	            for (Iterator<WordEntity> it = set.iterator(); it.hasNext();) {
@@ -182,7 +176,5 @@ public boolean WriteFile(String File_path,String Context) throws IOException {
 		return true;
 	}
 
-
-	
 		
 }
