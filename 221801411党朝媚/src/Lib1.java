@@ -40,6 +40,7 @@ public class Lib1
 					saveStr.append(temp);
 					saveStr.append(" ");
 				}
+			in.close();
 			isr.close();
 			temp = saveStr.toString();
 			temp=temp.replaceAll("[^A-Za-z0-9]", " ");//替换所有非字母数字的符号为空格
@@ -71,4 +72,30 @@ public class Lib1
 				bis.close();				
 		return result;
     }
+	//计算文件总行数
+	public String getLNum(String _filepath) throws IOException //throws IOException
+
+	{
+		int Lcount=0;
+		String result="";
+		FileInputStream in=null;
+		InputStreamReader isr=null;
+		BufferedReader bis=null;
+		in=new FileInputStream(_filepath);
+		isr=new InputStreamReader(in);
+		bis=new BufferedReader(isr);
+		while(bis.readLine()!=null)//一次读取一行
+		{
+			Lcount++;
+		}
+		in.close();
+		isr.close();
+		result += "lines: "+Lcount+"\n";
+		Lcount=0;
+		bis.close();
+		return result;
+	}
+
+	
+		
 }
