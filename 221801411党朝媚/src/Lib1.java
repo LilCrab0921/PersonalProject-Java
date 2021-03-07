@@ -162,7 +162,25 @@ public class Lib1
 				bis.close();
 		return result;
 	}
-
+				 
+//将输出结果写入指定文件夹
+public boolean WriteFile(String File_path,String Context) throws IOException {
+		File OutputFile = new File(File_path); 
+		FileOutputStream os = null; 
+		byte [] a = null; 
+			if(!OutputFile.exists()) {        
+				OutputFile.createNewFile(); 
+			}
+			FileWriter fileWriter =new FileWriter(File_path);
+			fileWriter.write("");
+		    fileWriter.flush();
+		    fileWriter.close();
+			os = new FileOutputStream(OutputFile); 
+			a = Context.getBytes(); 
+			os.write(a); 
+			os.close(); 			
+		return true;
+	}
 
 
 	
