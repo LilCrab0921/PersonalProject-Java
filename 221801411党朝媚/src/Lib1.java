@@ -42,7 +42,6 @@ public class Lib1
 					saveStr.append(temp);
 					saveStr.append(" ");
 				}
-// 			in.close();
 			isr.close();
 			temp = saveStr.toString();
 			temp=temp.replaceAll("[^A-Za-z0-9]", " ");//替换所有非字母数字的符号为空格
@@ -86,7 +85,6 @@ public class Lib1
 		{
 			Lcount++;
 		}
-// 		in.close();
 		isr.close();
 		result += "lines: "+Lcount+"\n";
 		Lcount=0;
@@ -127,7 +125,6 @@ public class Lib1
 	            for (String key : map.keySet()) {
 	                 set.add(new WordEntity(key,map.get(key)));
 	             }
-// 			in.close();
 			isr.close();
 	            int count=1;
 	            for (Iterator<WordEntity> it = set.iterator(); it.hasNext();) {
