@@ -21,3 +21,54 @@ public class Lib1
                 in.close();
         return result;
     }
+	//计算文件单词数
+	public String getWNum(String _filepath) throws IOException 
+	{
+		int Wcount=0;
+		String result="";
+		StringBuffer saveStr=new StringBuffer();
+		String temp="";
+		FileInputStream in=null;
+		InputStreamReader isr=null;
+		BufferedReader bis=null;
+		try {
+				in=new FileInputStream(_filepath);
+				isr=new InputStreamReader(in);
+				bis=new BufferedReader(isr);
+				while((temp=bis.readLine())!=null)
+				{
+					saveStr.append(temp);
+					saveStr.append(" ");
+				}
+			isr.close();
+			temp = saveStr.toString();
+			temp=temp.replaceAll("[^A-Za-z0-9]", " ");//替换所有非字母数字的符号为空格
+			temp=temp.toLowerCase();
+			String [] allW = temp.split(" +");//单词以空格分割（所有非字母数字符号已经变成空格）
+				Wcount=allW.length;
+			    for(int i=0;i<allW.length;i++)
+			    {
+			    	String s=allW[i].toString();
+			    	if(s.length()<4)//至少以4个英文字母开头
+			    	{
+			    		Wcount--;
+			    	}
+			    	else
+			    	{
+			    		for(int j=0;j<4;j++)
+			    		{
+			    			char c=s.charAt(j);
+			    			if(!(c>='a'&&c<='z'))
+			    			{
+			    				Wcount--;
+			    				break;
+			    			}
+			    		}
+			    	}
+			    }
+				result += "words: "+Wcount+"\n";
+				Wcount=0;
+				bis.close();				
+		return result;
+    }
+}
